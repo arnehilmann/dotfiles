@@ -1,0 +1,4 @@
+xmonad-x86*
+*.o
+*.errors
+*.hi

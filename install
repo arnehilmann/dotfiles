@@ -1,0 +1,91 @@
+#!/usr/bin/env python
+import glob
+import os
+import shutil
+import subprocess
+import sys
+
+DOTFILES = "dotfiles"
+
+def check_sanity():
+    if not os.path.exists(DOTFILES):
+        print "cannot find '%s'!" % DOTFILES
+        print "check out this project in your home directory"
+        print "and call '%s/install' from there." % DOTFILES
+        sys.exit(1)
+
+def link_config():
+    print "-- link config"
+    links = []
+    for target in glob.glob(os.path.join(DOTFILES, "dotconfig", "*")):
+        linkname = target.replace(os.path.join(DOTFILES, "dotconfig"), ".config")
+        target = os.path.join("..", target)
+        links.append((target, linkname))
+
+    for target in glob.glob(os.path.join(DOTFILES, "_*")):
+        linkname = target.replace(os.path.join(DOTFILES, "_"), ".")
+        links.append((target, linkname))
+
+    for target, linkname in links:
+        print "---- create %s" % linkname
+        if os.path.lexists(linkname):
+            if os.path.islink(linkname):
+                print "------ remove existing link %s" % linkname
+                os.remove(linkname)
+            else:
+                linkname_backup = "%s-backup" % linkname
+                print "------ move %s to %s" % (linkname, linkname_backup)
+                shutil.move(linkname, linkname_backup)
+        print "------ link %s to %s" % (linkname, target)
+        linkdir = os.path.dirname(linkname)
+        if linkdir and not os.path.exists(linkdir):
+                print "------ create dir %s" % linkdir
+                os.makedirs(linkdir)
+        targetdir = os.path.dirname(target)
+        if targetdir and not os.path.exists(targetdir):
+            print "------ create dir %s" % targetdir
+            os.makedirs(targetdir)
+        os.symlink(target, linkname)
+
+def install_git_projects():
+    print "-- installing git projects"
+    PROJECTS = filter(None, [line.split() for line in """
+    _vim/bundle/fugitive http://github.com/tpope/vim-fugitive.git
+    _vim/bundle/surround https://github.com/tpope/vim-surround.git
+    _vim/bundle/git https://github.com/tpope/vim-git.git
+    _vim/bundle/command-t https://github.com/wincent/Command-T.git
+    _vim/bundle/pyflakes https://github.com/mitechie/pyflakes-pathogen.git
+    _vim/bundle/ack https://github.com/mileszs/ack.vim.git
+    _vim/bundle/gundo https://github.com/sjl/gundo.vim.git
+    _vim/bundle/pydoc https://github.com/fs111/pydoc.vim.git
+    _vim/bundle/pep8 https://github.com/vim-scripts/pep8.git
+    _vim/bundle/pytest https://github.com/alfredodeza/pytest.vim.git
+    _vim/bundle/makegreen https://github.com/reinh/vim-makegreen
+    _vim/bundle/tasklist https://github.com/vim-scripts/TaskList.vim.git
+    _vim/bundle/nerdtree https://github.com/vim-scripts/The-NERD-tree.git
+    _vim/bundle/ropevim https://github.com/sontek/rope-vim.git
+    _vim/bundle/acp https://github.com/vim-scripts/AutoComplPop.git
+    _vim/bundle/solarized https://github.com/altercation/vim-colors-solarized.git
+    _vim/bundle/markdown https://github.com/plasticboy/vim-markdown.git
+    _vim/bundle/vim-addon-mw-utils https://github.com/MarcWeber/vim-addon-mw-utils.git
+    _vim/bundle/tlib https://github.com/tomtom/tlib_vim.git
+    _vim/bundle/coffee https://github.com/kchmck/vim-coffee-script.git
+    _vim/bundle/vimerl https://github.com/jimenezrick/vimerl.git
+    dotconfig/powerline https://github.com/Lokaltog/powerline.git
+    """.splitlines() if line])
+
+    print PROJECTS
+    for path, repo in PROJECTS:
+        path = os.path.join(DOTFILES, path)
+        print "---- pulling %s" % path
+        if os.path.exists(path):
+            subprocess.check_call(["git", "pull"], cwd=path)
+        else:
+            subprocess.check_call(["git", "clone", repo, path])
+
+if __name__ == "__main__":
+    check_sanity()
+    #install_git_projects()
+    link_config()
+    print "done."
+
