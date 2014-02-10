@@ -9,7 +9,7 @@ DOTFILES = "dotfiles"
 
 def check_sanity():
     if not os.path.exists(DOTFILES):
-        print "cannot find '%s'!" % DOTFILES
+        print "cannot find directory '%s'!" % DOTFILES
         print "check out this project in your home directory"
         print "and call '%s/install' from there." % DOTFILES
         sys.exit(1)
@@ -74,7 +74,7 @@ def install_git_projects():
     dotconfig/powerline https://github.com/Lokaltog/powerline.git
     """.splitlines() if line])
 
-    print PROJECTS
+    #print PROJECTS
     for path, repo in PROJECTS:
         path = os.path.join(DOTFILES, path)
         print "---- pulling %s" % path
@@ -85,7 +85,7 @@ def install_git_projects():
 
 if __name__ == "__main__":
     check_sanity()
-    #install_git_projects()
+    install_git_projects()
     link_config()
     print "done."
 
