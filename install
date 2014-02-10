@@ -19,7 +19,7 @@ def link_config():
     links = []
     for target in glob.glob(os.path.join(DOTFILES, "dotconfig", "*")):
         linkname = target.replace(os.path.join(DOTFILES, "dotconfig"), ".config")
-        target = os.path.join("..", target)
+        target = os.path.abspath(target)
         links.append((target, linkname))
 
     for target in glob.glob(os.path.join(DOTFILES, "_*")):
