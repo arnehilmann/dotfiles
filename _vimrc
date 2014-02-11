@@ -184,7 +184,7 @@ set nowrap                  " don't wrap text
 set linebreak               " don't wrap textin the middle of a word
 set autoindent              " always set autoindenting on
 set smartindent             " use smart indent if there is no indent file
-set tabstop=4               " <tab> inserts 4 spaces 
+set tabstop=4               " <tab> inserts 4 spaces
 set shiftwidth=4            " but an indent level is 2 spaces wide.
 set softtabstop=4           " <BS> over an autoindent deletes both spaces.
 set expandtab               " Use spaces, not tabs, for autoindent/tab key.
@@ -228,9 +228,11 @@ set list
 """ Searching and Patterns
 set ignorecase              " Default to using case insensitive searches,
 set smartcase               " unless uppercase letters are used in the regex.
-set smarttab                " Handle tabs more intelligently 
+set smarttab                " Handle tabs more intelligently
 set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
+
+set t_Co=256
 
 """" Display
 if has("gui_running")
@@ -309,7 +311,7 @@ if filereadable($VIRTUAL_ENV . '/.vimrc')
     source $VIRTUAL_ENV/.vimrc
 endif
 
-set colorcolumn=79
+set colorcolumn=80
 highlight ColorColumn ctermbg=7
 
 
@@ -341,4 +343,10 @@ noremap <leader>y   :y*<CR>:y+<CR>j
 autocmd BufReadPost,FileReadPost   .vault set updatetime=300000
 autocmd CursorHold                 .vault quit
 
-set rtp+=$HOME/dotfiles/powerline/powerline/bindings/vim
+
+
+
+"set rtp+=$HOME/dotfiles/powerline/powerline/bindings/vim
+let g:airline_powerline_fonts = 1
+"let g:airline_theme = 'luna'
+let g:airline_theme = 'sol'
