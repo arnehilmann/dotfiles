@@ -72,9 +72,9 @@ def install_git_projects():
     _vim/bundle/coffee https://github.com/kchmck/vim-coffee-script.git
     _vim/bundle/vimerl https://github.com/jimenezrick/vimerl.git
     dotconfig/powerline https://github.com/Lokaltog/powerline.git
+    _vim/bundle/vim-airline https://github.com/bling/vim-airline.git
     """.splitlines() if line])
 
-    #print PROJECTS
     for path, repo in PROJECTS:
         path = os.path.join(DOTFILES, path)
         print "---- pulling %s" % path
