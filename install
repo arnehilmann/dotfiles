@@ -63,7 +63,6 @@ def install_git_projects():
     _vim/bundle/makegreen https://github.com/reinh/vim-makegreen
     _vim/bundle/tasklist https://github.com/vim-scripts/TaskList.vim.git
     _vim/bundle/nerdtree https://github.com/vim-scripts/The-NERD-tree.git
-    _vim/bundle/ropevim https://github.com/sontek/rope-vim.git
     _vim/bundle/acp https://github.com/vim-scripts/AutoComplPop.git
     _vim/bundle/solarized https://github.com/altercation/vim-colors-solarized.git
     _vim/bundle/markdown https://github.com/plasticboy/vim-markdown.git
@@ -74,6 +73,7 @@ def install_git_projects():
     dotconfig/powerline https://github.com/Lokaltog/powerline.git
     _vim/bundle/vim-airline https://github.com/bling/vim-airline.git
     """.splitlines() if line])
+    #_vim/bundle/ropevim https://github.com/sontek/rope-vim.git
 
     for path, repo in PROJECTS:
         path = os.path.join(DOTFILES, path)
