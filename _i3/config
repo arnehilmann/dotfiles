@@ -163,10 +163,10 @@ bar {
 ## Power shortcuts
 set $power_mode (s) suspend, (r) reboot, (p) poweroff, (l) lock
 mode "$power_mode" {
-    bindsym r mode "default"; exec systemctl reboot 
-    bindsym s mode "default"; exec systemctl suspend 
-    bindsym p mode "default"; exec systemctl poweroff 
-    bindsym l mode "default"; exec i3lock
+    bindsym r mode "default"; exec systemctl reboot
+    bindsym s mode "default"; exec systemctl suspend
+    bindsym p mode "default"; exec systemctl poweroff
+    bindsym l mode "default"; exec lock
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
