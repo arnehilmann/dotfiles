@@ -26,7 +26,7 @@ import qualified Data.Map        as M
 -- certain contrib modules.
 --
 -- myTerminal = "/usr/bin/urxvt"
-myTerminal = "/usr/bin/gnome-terminal"
+myTerminal = "/usr/bin/xfce4-terminal"
 
 
 ------------------------------------------------------------------------
@@ -133,9 +133,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   [ ((modMask .|. shiftMask, xK_Return),
      spawn $ XMonad.terminal conf)
 
-  -- Lock the screen using xscreensaver.
-  , ((modMask .|. controlMask, xK_l),
-     spawn "xscreensaver-command -lock")
+--  -- Lock the screen using xscreensaver.
+--  , ((modMask .|. controlMask, xK_l),
+--     spawn "xscreensaver-command -lock")
 
   -- Launch dmenu via yeganesh.
   -- Use this to launch programs without a key binding.
@@ -146,41 +146,41 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- Take a screenshot in select mode.
   -- After pressing this key binding, click a window, or draw a rectangle with
   -- the mouse.
-  , ((modMask .|. shiftMask, xK_p),
-     spawn "select-screenshot")
+--  , ((modMask .|. shiftMask, xK_p),
+--     spawn "select-screenshot")
 
   -- Take full screenshot in multi-head mode.
   -- That is, take a screenshot of everything you see.
-  , ((modMask .|. controlMask .|. shiftMask, xK_p),
-     spawn "screenshot")
+--  , ((modMask .|. controlMask .|. shiftMask, xK_p),
+--     spawn "screenshot")
 
   -- Mute volume.
-  , ((modMask .|. controlMask, xK_m),
-     spawn "amixer -q set Master toggle")
+--  , ((modMask .|. controlMask, xK_m),
+--     spawn "amixer -q set Master toggle")
 
   -- Decrease volume.
-  , ((modMask .|. controlMask, xK_j),
-     spawn "amixer -q set Master 10%-")
+--  , ((modMask .|. controlMask, xK_j),
+--     spawn "amixer -q set Master 10%-")
 
   -- Increase volume.
-  , ((modMask .|. controlMask, xK_k),
-     spawn "amixer -q set Master 10%+")
+--  , ((modMask .|. controlMask, xK_k),
+--     spawn "amixer -q set Master 10%+")
 
   -- Audio previous.
-  , ((0, 0x1008FF16),
-     spawn "")
+--  , ((0, 0x1008FF16),
+--     spawn "")
 
   -- Play/pause.
-  , ((0, 0x1008FF14),
-     spawn "")
+--  , ((0, 0x1008FF14),
+--     spawn "")
 
   -- Audio next.
-  , ((0, 0x1008FF17),
-     spawn "")
+--  , ((0, 0x1008FF17),
+--     spawn "")
 
   -- Eject CD tray.
-  , ((0, 0x1008FF2C),
-     spawn "eject -T")
+--  , ((0, 0x1008FF2C),
+--     spawn "eject -T")
 
   --------------------------------------------------------------------
   -- "Standard" xmonad key bindings
@@ -262,18 +262,19 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      restart "xmonad" True)
   ]
   ++
- 
-  -- mod-[1..9], Switch to workspace N
-  -- mod-shift-[1..9], Move client to workspace N
-  [((m .|. modMask, k), windows $ f i)
-      | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-      , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
-  ++
 
   -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
   -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
   [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
       | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+      , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+  ++
+ 
+  -- mod-[1..9], Switch to workspace N
+  -- mod-shift-[1..9], Move client to workspace N
+  [((m .|. modMask, k), windows $ f i)
+      | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+      --, (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
       , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
  
  
