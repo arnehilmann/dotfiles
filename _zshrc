@@ -274,7 +274,7 @@ zrcautoload is-at-least || is-at-least() { return 1 }
 setopt append_history
 
 # import new commands from the history file also in other zsh-session
-is4 && setopt share_history
+#is4 && setopt share_history
 
 # save each command's beginning timestamp and the duration to the history file
 setopt extended_history
@@ -3317,3 +3317,5 @@ zrclocal
 # Local variables:
 # mode: sh
 # End:
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
