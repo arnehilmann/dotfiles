@@ -9,13 +9,13 @@ DOTFILES = "dotfiles"
 
 def check_sanity():
     if not os.path.exists(DOTFILES):
-        print "cannot find directory '%s'!" % DOTFILES
-        print "check out this project in your home directory"
-        print "and call '%s/install' from there." % DOTFILES
+        print("cannot find directory '%s'!" % DOTFILES)
+        print("check out this project in your home directory")
+        print("and call '%s/install' from there." % DOTFILES)
         sys.exit(1)
 
 def link_config():
-    print "-- link config"
+    print("-- link config")
     links = []
     for target in glob.glob(os.path.join(DOTFILES, "dotconfig", "*")):
         linkname = target.replace(os.path.join(DOTFILES, "dotconfig"), ".config")
@@ -27,28 +27,28 @@ def link_config():
         links.append((target, linkname))
 
     for target, linkname in links:
-        print "---- create %s" % linkname
+        print("---- create %s" % linkname)
         if os.path.lexists(linkname):
             if os.path.islink(linkname):
-                print "------ remove existing link %s" % linkname
+                print("------ remove existing link %s" % linkname)
                 os.remove(linkname)
             else:
                 linkname_backup = "%s-backup" % linkname
-                print "------ move %s to %s" % (linkname, linkname_backup)
+                print("------ move %s to %s" % (linkname, linkname_backup))
                 shutil.move(linkname, linkname_backup)
-        print "------ link %s to %s" % (linkname, target)
+        print("------ link %s to %s" % (linkname, target))
         linkdir = os.path.dirname(linkname)
         if linkdir and not os.path.exists(linkdir):
-                print "------ create dir %s" % linkdir
+                print("------ create dir %s" % linkdir)
                 os.makedirs(linkdir)
         targetdir = os.path.dirname(target)
         if targetdir and not os.path.exists(targetdir):
-            print "------ create dir %s" % targetdir
+            print("------ create dir %s" % targetdir)
             os.makedirs(targetdir)
         os.symlink(target, linkname)
 
 def install_git_projects():
-    print "-- installing git projects"
+    print("-- installing git projects")
     PROJECTS = filter(None, [line.split() for line in """
     _vim/bundle/fugitive http://github.com/tpope/vim-fugitive.git
     _vim/bundle/surround https://github.com/tpope/vim-surround.git
@@ -77,7 +77,7 @@ def install_git_projects():
 
     for path, repo in PROJECTS:
         path = os.path.join(DOTFILES, path)
-        print "---- pulling %s" % path
+        print("---- pulling %s" % path)
         if os.path.exists(path):
             subprocess.check_call(["git", "pull"], cwd=path)
         else:
@@ -87,5 +87,5 @@ if __name__ == "__main__":
     check_sanity()
     install_git_projects()
     link_config()
-    print "done."
+    print("done.")
 
