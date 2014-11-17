@@ -1,4 +1,3 @@
-" https://github.com/sontek/dotfiles/
 " ==========================================================
 " Dependencies - Libraries/Applications outside of vim
 " ==========================================================
@@ -142,7 +141,7 @@ filetype on                   " try to detect filetypes
 filetype plugin indent on     " enable loading indent file for filetype
 set number                    " Display line numbers
 set numberwidth=1             " using only 1 column (and 1 space) while possible
-set background=dark           " We are using dark background in vim
+"set background=dark           " We are using dark background in vim
 set title                     " show title in console title bar
 set wildmenu                  " Menu completion in command mode on <Tab>
 set wildmode=full             " <Tab> cycles between all matching choices.
@@ -232,11 +231,11 @@ set smarttab                " Handle tabs more intelligently
 set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
 
-set t_Co=256
+"set t_Co=256
 
 """" Display
 if has("gui_running")
-    colorscheme github
+    "colorscheme solarized
     "colorscheme ashen
     "colorscheme slate
     " Remove menu bar
@@ -245,7 +244,7 @@ if has("gui_running")
     " Remove toolbar
     set guioptions-=T
 else
-    colorscheme github
+    "colorscheme solarized
     "colorscheme ashen
     "colorscheme slate
 endif
@@ -314,8 +313,8 @@ if filereadable($VIRTUAL_ENV . '/.vimrc')
 endif
 
 set colorcolumn=120
-highlight ColorColumn ctermbg=7
-highlight Normal ctermbg=White ctermfg=Black guifg=Black guibg=White
+highlight ColorColumn ctermbg=2
+"highlight Normal ctermbg=White ctermfg=Black guifg=Black guibg=White
 
 
 
@@ -346,9 +345,9 @@ noremap <leader>y   :y*<CR>:y+<CR>j
 autocmd BufReadPost,FileReadPost   .vault set updatetime=300000
 autocmd CursorHold                 .vault quit
 
-
-
-
+"
+"
+"
 "set rtp+=$HOME/dotfiles/powerline/powerline/bindings/vim
 let g:airline_powerline_fonts = 1
 "let g:airline_theme = 'luna'
