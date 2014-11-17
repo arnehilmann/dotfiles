@@ -23,4 +23,17 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+exec >login 2>&1
+set -x
+
+echo "-------- two screens --------"
+if [ -x "$HOME/.screenlayout/twobigscreens.sh" ]; then
+    $HOME/.screenlayout/twobigscreens.sh
+fi
+
+echo "-------- wm --------"
+xmonad --replace &
+
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 EDITOR=vim
