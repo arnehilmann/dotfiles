@@ -236,7 +236,8 @@ set t_Co=256
 
 """" Display
 if has("gui_running")
-    colorscheme github
+    colorscheme solarized
+    "colorscheme github
     "colorscheme ashen
     "colorscheme slate
     " Remove menu bar
@@ -245,7 +246,8 @@ if has("gui_running")
     " Remove toolbar
     set guioptions-=T
 else
-    colorscheme github
+    colorscheme solarized
+    "colorscheme github
     "colorscheme ashen
     "colorscheme slate
 endif
@@ -314,8 +316,8 @@ if filereadable($VIRTUAL_ENV . '/.vimrc')
 endif
 
 set colorcolumn=120
-highlight ColorColumn ctermbg=7
-highlight Normal ctermbg=White ctermfg=Black guifg=Black guibg=White
+"highlight ColorColumn ctermbg=7
+"highlight Normal ctermbg=White ctermfg=Black guifg=Black guibg=White
 
 
 
