@@ -31,9 +31,4 @@ if [ -x "$HOME/.screenlayout/twobigscreens.sh" ]; then
     $HOME/.screenlayout/twobigscreens.sh
 fi
 
-echo "-------- wm --------"
-xmonad --replace &
-
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 EDITOR=vim
