@@ -235,7 +235,8 @@ set incsearch               " Incrementally search while typing a /regex
 
 """" Display
 if has("gui_running")
-    "colorscheme solarized
+    colorscheme solarized
+    "colorscheme github
     "colorscheme ashen
     "colorscheme slate
     " Remove menu bar
@@ -244,7 +245,8 @@ if has("gui_running")
     " Remove toolbar
     set guioptions-=T
 else
-    "colorscheme solarized
+    colorscheme solarized
+    "colorscheme github
     "colorscheme ashen
     "colorscheme slate
 endif
@@ -313,10 +315,6 @@ if filereadable($VIRTUAL_ENV . '/.vimrc')
 endif
 
 set colorcolumn=120
-highlight ColorColumn ctermbg=2
-"highlight Normal ctermbg=White ctermfg=Black guifg=Black guibg=White
-
-
 
 
 
