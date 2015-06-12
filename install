@@ -2,10 +2,10 @@
 import glob
 import os
 import shutil
-import subprocess
 import sys
 
 DOTFILES = "dotfiles"
+
 
 def check_sanity():
     if not os.path.exists(DOTFILES):
@@ -13,6 +13,7 @@ def check_sanity():
         print("check out this project in your home directory")
         print("and call '%s/install' from there." % DOTFILES)
         sys.exit(1)
+
 
 def link_config():
     print("-- link config")
@@ -47,45 +48,8 @@ def link_config():
             os.makedirs(targetdir)
         os.symlink(target, linkname)
 
-def install_git_projects():
-    print("-- installing git projects")
-    PROJECTS = filter(None, [line.split() for line in """
-    _vim/bundle/fugitive http://github.com/tpope/vim-fugitive.git
-    _vim/bundle/surround https://github.com/tpope/vim-surround.git
-    _vim/bundle/git https://github.com/tpope/vim-git.git
-    _vim/bundle/command-t https://github.com/wincent/Command-T.git
-    _vim/bundle/pyflakes https://github.com/mitechie/pyflakes-pathogen.git
-    _vim/bundle/ack https://github.com/mileszs/ack.vim.git
-    _vim/bundle/gundo https://github.com/sjl/gundo.vim.git
-    _vim/bundle/pydoc https://github.com/fs111/pydoc.vim.git
-    _vim/bundle/pep8 https://github.com/vim-scripts/pep8.git
-    _vim/bundle/pytest https://github.com/alfredodeza/pytest.vim.git
-    _vim/bundle/makegreen https://github.com/reinh/vim-makegreen
-    _vim/bundle/tasklist https://github.com/vim-scripts/TaskList.vim.git
-    _vim/bundle/nerdtree https://github.com/vim-scripts/The-NERD-tree.git
-    _vim/bundle/acp https://github.com/vim-scripts/AutoComplPop.git
-    _vim/bundle/solarized https://github.com/altercation/vim-colors-solarized.git
-    _vim/bundle/markdown https://github.com/plasticboy/vim-markdown.git
-    _vim/bundle/vim-addon-mw-utils https://github.com/MarcWeber/vim-addon-mw-utils.git
-    _vim/bundle/tlib https://github.com/tomtom/tlib_vim.git
-    _vim/bundle/coffee https://github.com/kchmck/vim-coffee-script.git
-    _vim/bundle/vimerl https://github.com/jimenezrick/vimerl.git
-    dotconfig/powerline https://github.com/Lokaltog/powerline.git
-    _vim/bundle/vim-airline https://github.com/bling/vim-airline.git
-    """.splitlines() if line])
-    #_vim/bundle/ropevim https://github.com/sontek/rope-vim.git
-
-    for path, repo in PROJECTS:
-        path = os.path.join(DOTFILES, path)
-        print("---- pulling %s" % path)
-        if os.path.exists(path):
-            subprocess.check_call(["git", "pull"], cwd=path)
-        else:
-            subprocess.check_call(["git", "clone", repo, path])
 
 if __name__ == "__main__":
     check_sanity()
-    install_git_projects()
     link_config()
     print("done.")
-
