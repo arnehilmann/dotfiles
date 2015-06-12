@@ -224,3 +224,12 @@ nmap <Leader>o :CtrlP<CR>
 nmap <Leader>w :w<CR>
 
 noremap <Leader>c :Coveragepy report<CR>
+
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
+nmap <Leader><Leader> V
