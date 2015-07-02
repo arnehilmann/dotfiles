@@ -31,6 +31,7 @@ Plugin 'xolox/vim-easytags'
 Plugin 'majutsushi/tagbar'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/a.vim'
+Plugin 'jaxbot/semantic-highlight.vim'
 
 " ----- Working with Git ----------------------------------------------
 Plugin 'airblade/vim-gitgutter'
@@ -233,3 +234,7 @@ vmap <Leader>p "+p
 vmap <Leader>P "+P
 
 nmap <Leader><Leader> V
+
+
+" ----- semantic highlighting -----
+:nnoremap <Leader>s :SemanticHighlightToggle<CR>
