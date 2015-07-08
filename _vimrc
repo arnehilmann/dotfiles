@@ -32,6 +32,10 @@ Plugin 'majutsushi/tagbar'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/a.vim'
 Plugin 'jaxbot/semantic-highlight.vim'
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'haya14busa/incsearch-fuzzy.vim'
+Plugin 'amoffat/snake'
+Plugin 'elixir-lang/vim-elixir'
 
 " ----- Working with Git ----------------------------------------------
 Plugin 'airblade/vim-gitgutter'
@@ -238,3 +242,8 @@ nmap <Leader><Leader> V
 
 " ----- semantic highlighting -----
 :nnoremap <Leader>s :SemanticHighlightToggle<CR>
+
+
+" ----- incsearch -----
+map z/ <Plug>(incsearch-fuzzy-/)
+map z? <Plug>(incsearch-fuzzy-?)
