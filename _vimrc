@@ -36,6 +36,7 @@ Plugin 'haya14busa/incsearch.vim'
 Plugin 'haya14busa/incsearch-fuzzy.vim'
 Plugin 'amoffat/snake'
 Plugin 'elixir-lang/vim-elixir'
+Plugin 'arnehilmann/vim_cuttlefish'
 
 " ----- Working with Git ----------------------------------------------
 Plugin 'airblade/vim-gitgutter'
@@ -222,7 +223,7 @@ augroup END
 
 
 " ----- andviro/flake8-vim settings -----
-" let g:pep8_map='<leader>8'
+let g:pep8_map='<leader>8'
 
 
 nmap <Leader>o :CtrlP<CR>
